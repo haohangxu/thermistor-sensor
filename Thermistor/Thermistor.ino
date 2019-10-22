@@ -44,14 +44,13 @@ void loop ()
   logR = log(R_thermistor);
   T_kelvin = (1.0 / (A + B * logR + C * logR * logR * logR));
   T_celsius = T_kelvin - 273.15;
-  T_fahrenheit = (T_celsius * 9.0) / 5.0 + 32.0;
-
+ 
   // LED display for temperature ranges
-  if (T_fahrenheit > 75)
+  if (T_celsius > 75)
   {
     set_RGB(ON, OFF, OFF);
   }
-  else if (T_fahrenheit > 70)
+  else if (T_celsius > 70)
   {
     set_RGB(OFF, ON, OFF);
   }
@@ -61,13 +60,13 @@ void loop ()
   }
 
   // Output to screen
-  Serial.print("Voltage: ");
+  Serial.print("Potential: ");
   Serial.print(V_thermistor);
-  Serial.print("\t");
+  Serial.print(" (Volts)\t");
   
   Serial.print("Temperature: ");
-  Serial.print(T_fahrenheit, 4);
-  Serial.print("\n");
+  Serial.print(T_celsius, 4);
+  Serial.print(" (Celsius)\n");
 
   delay(500);
 }
